@@ -3,7 +3,7 @@
 
 import subprocess
 from  time import sleep
-from gi.repository import Gtk,GObject
+from gi.repository import Gtk,GObject,Pango
 from multiprocessing import Process
 
 class atop(Gtk.Window):
@@ -15,22 +15,16 @@ class atop(Gtk.Window):
       self.add(self.vb_main)
       self.t_v = Gtk.TextView()
       self.t_v.set_editable(False)
-      self.t_v.set_wrap_mode(Gtk.WrapMode.CHAR)
+      fontdesc = Pango.FontDescription("文泉驿等宽正黑 12")
+      self.t_v.modify_font(fontdesc)
       self.t_b = self.t_v.get_buffer()
       self.timeout_id = GObject.timeout_add(5000, self.updater, None)
-      self.font_button = Gtk.FontButton()
-      self.font_button.connect('font-set', self.on_font_set)
-      self.vb_main.pack_start(self.font_button, False, False, 0)
       self.vb_main.pack_start(self.t_v,True,True,0)
    def updater(self,userdata):   
       pg=subprocess.getstatusoutput("atop 1 1")
-      print(pg[1])
+      #print(pg[1])
       self.t_b.set_text(pg[1])
       return True
-   def on_font_set(self, widget):
-      font_description = widget.get_font_desc()
-      print("You chose: " + widget.get_font())
-      self.t_v.modify_font(font_description)
 win=atop()
 win.connect("delete-event", Gtk.main_quit)
 win.show_all()
