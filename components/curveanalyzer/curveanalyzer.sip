@@ -5,7 +5,12 @@
 class CurveAnalyzer : public QWidget
 {
 
+%TypeHeaderCode
+#include "curveanalyzer.h"
+%End
+
 public:
+	static bool registerToSystem(QString version);
 	CurveAnalyzer(QWidget *parent = 0);
 	void updateData(const QString &data);
 

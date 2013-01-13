@@ -3,12 +3,11 @@
 ######################################################################
 
 TEMPLATE = lib
+CONFIG += static release
 TARGET = CurveAnalyzer
 DEPENDPATH += .
 INCLUDEPATH += .
 
-DESTDIR += lib
-CONFIG += release static
 MOC_DIR += .tmp
 OBJECTS_DIR += .tmp
 RCC_DIR += .tmp

@@ -1,5 +1,10 @@
 #include "curveanalyzer.h"
 
+bool CurveAnalyzer::registerToSystem(QString version)
+{
+	return true;
+}
+
 CurveAnalyzer::CurveAnalyzer(QWidget *parent)
 	: QWidget(parent)
 {
@@ -7,11 +12,7 @@ CurveAnalyzer::CurveAnalyzer(QWidget *parent)
 
 void CurveAnalyzer::updateData(const QString &data)
 {
-
 }
-
-
-
 
 
 

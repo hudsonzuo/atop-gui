@@ -26,7 +26,6 @@ makefile = pyqtconfig.QtGuiModuleMakefile(
 makefile.extra_libs = ["CurveAnalyzer"]
 makefile.extra_lib_dirs = ["pureqt"]
 makefile.extra_include_dirs = ["pureqt"]
-makefile.LIBDIR.append("./lib")
+makefile.LIBDIR.append(".")
 
 makefile.generate()
-os.

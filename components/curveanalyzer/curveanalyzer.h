@@ -6,6 +6,7 @@
 class CurveAnalyzer : public QWidget
 {
 public:
+	static bool registerToSystem(QString version);
     CurveAnalyzer(QWidget *parent = 0);
 	void updateData(const QString &data);
 

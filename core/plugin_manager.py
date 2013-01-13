@@ -24,12 +24,12 @@ class PluginManager(object):
 		- `filename`:
         """
 		try:
-			lib = imp.load_dynamic(key, filename)
-			module = lib.create()			  # Factory method
+			module = imp.load_dynamic(key, filename)
+			qtclass = getattr(module, key)
 			# 调用模块的注册函数，如果成功则将模块添加到模块列表中
 			# 如果存在两个同名的模块，会出现问题
-			if module.register(version_):
-				self.modules_[name] = module
+			if qtclass.registerToSystem(PluginManager.version_):
+				self.modules_[key] = qtclass()
 		except Exception as e:
 			print("Error:", e)
 
