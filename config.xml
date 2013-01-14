@@ -1,0 +1,7 @@
+<xml>
+  <module id="1">
+	  <name>CurveAnalyzer</name>
+	  <version>1.0</version>
+	  <location>/home/hdc/project/atop-gui/components/curveanalyzer/CurveAnalyzer.so</location>
+  </module>
+</xml>
