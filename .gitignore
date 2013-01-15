@@ -20,3 +20,4 @@ components/curveanalyzer/sip*
 
 # Directories
 .ropeproject
+components/curveanalyzer/.ropeproject
