@@ -25,7 +25,9 @@ def main():
 	w = MainWindow()
 	
 	pm = plugin_manager.PluginManager()
-	pm.loadFromXML('config.xml')
+	#	pm.loadFromXML('config.xml')
+	pm.loadAll("components/curveanalyzer")
+	print pm.modules()
 
 	w.show()
 	

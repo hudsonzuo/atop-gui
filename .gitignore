@@ -17,3 +17,6 @@ components/curveanalyzer/sip*
 *.exe
 *.out
 *.app
+
+# Directories
+.ropeproject
