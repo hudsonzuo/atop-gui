@@ -1,7 +1,7 @@
 # Object files
 *.o
 *.pyc
-components/curveanalyzer/sip*
+sip*.*
 
 # Libraries
 *.lib
@@ -17,6 +17,7 @@ components/curveanalyzer/sip*
 *.exe
 *.out
 *.app
+components/curveanalyzer/test/test
 
 # Directories
 .ropeproject

@@ -14,6 +14,9 @@ public:
 	CurveAnalyzer(QWidget *parent = 0);
 	void updateData(const QString &data);
 
+protected:
+    void paintEvent(QPaintEvent *e);
+	
 private:
 	CurveAnalyzer(const CurveAnalyzer &);
 	CurveAnalyzer &operator=(const CurveAnalyzer &);
