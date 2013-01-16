@@ -3,6 +3,8 @@
 
 #include <QtGui/QWidget>
 
+class CurvePlotter;
+
 class CurveAnalyzer : public QWidget
 {
 public:
@@ -10,6 +12,12 @@ public:
     CurveAnalyzer(QWidget *parent = 0);
 	void updateData(const QString &data);
 
+protected:
+	void resizeEvent(QResizeEvent *e);
+	
+private:
+	CurvePlotter *curvePlotter_;
+	
 private:
 	CurveAnalyzer(const CurveAnalyzer &);
 	CurveAnalyzer &operator=(const CurveAnalyzer &);
