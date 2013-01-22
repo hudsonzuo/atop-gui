@@ -20,7 +20,8 @@ void CurvePlotter::paintEvent(QPaintEvent *e)
 	QFont font;
 	QFontMetrics fm(font);
 	// draw x axis
-
+	
+	
 	// draw y axis
 	painter.setPen(Qt::white);
 	int ax = 1;

@@ -4,6 +4,7 @@
 #include <QtGui/QWidget>
 
 class CurvePlotter;
+class CurveLegend;
 
 class CurveAnalyzer : public QWidget
 {
@@ -17,6 +18,7 @@ protected:
 	
 private:
 	CurvePlotter *curvePlotter_;
+	CurveLegend  *curveLegend_;
 	
 private:
 	CurveAnalyzer(const CurveAnalyzer &);

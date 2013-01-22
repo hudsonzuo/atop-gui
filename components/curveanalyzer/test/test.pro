@@ -8,5 +8,5 @@ DEPENDPATH += .
 INCLUDEPATH += .
 
 # Input
-HEADERS += ../curveanalyzer.h ../curveplotter.h
-SOURCES += main.cpp ../curveanalyzer.cpp ../curveplotter.cpp
+HEADERS += ../curveanalyzer.h ../curveplotter.h ../curvelegend.h
+SOURCES += main.cpp ../curveanalyzer.cpp ../curveplotter.cpp ../curvelegend.cpp
