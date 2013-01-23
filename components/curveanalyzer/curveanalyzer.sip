@@ -1,12 +1,14 @@
 %Module CurveAnalyzer
 
 %Import QtGui/QtGuimod.sip
+%Import QtCore/QtCoremod.sip
 
 class CurveAnalyzer : public QWidget
 {
 
 %TypeHeaderCode
 #include "curveanalyzer.h"
+#include "curveplotter.h"
 %End
 
 public:
@@ -15,7 +17,8 @@ public:
 	void updateData(const QString &data);
 
 protected:
-    void paintEvent(QPaintEvent *e);
+	void resizeEvent(QResizeEvent *event);
+	void paintEvent(QPaintEvent *event);
 	
 private:
 	CurveAnalyzer(const CurveAnalyzer &);

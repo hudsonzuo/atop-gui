@@ -11,22 +11,22 @@ class MainWindow(QtGui.QMainWindow):
 		"""
 		"""
 		super(QtGui.QMainWindow, self).__init__()
-		self.tabwidget_ = QtGui.QTabWidget()		
-		self.layout().addWidget(self.tabwidget_)
-		
-	def addTab(self, name, module):
+		self.tabWidget_ = QtGui.QTabWidget(self)
+
+	def addPage(self, module, name):
 		"""
 		
 		Arguments:
 		- `module`:
+		- `name`:
 		"""
-		self.tabwidget_.addTab(module, name)
-
+		self.tabWidget_.addTab(module, name)
+		
 	def resizeEvent(self, event=None):
 		"""
 		
 		Arguments:
-		- `QResizeEvent`:
+		- `event`:
 		"""
-		self.tabwidget_.resize(self.size())
+		self.tabWidget_.resize(self.size())
 		
