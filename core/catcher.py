@@ -206,7 +206,14 @@ class catcher():
          # 13number of raw packets received  (obsolete always  0)
          # 14TGID  (group  number  of related tasks/threads) 
          # 15is_process (y/n).
-
+      self.D_offset=6
+       # The  first part of each output-line consists of the following six fields:  
+       #label (the name of the label), 
+       #host (the name of  this machine)
+       #epoch (the time of this interval as number of seconds since 1-1-1970), 
+       #date (date of this interval  in format  YYYY/MM/DD)
+       #time (time of this interval in format HH:MM:SS)
+       #interval (number of seconds elapsed for this interval).
    def get(self,type):
       got=getstatusoutput('atop 1 1 -P'+type)
       if got[0] != 0:
@@ -218,12 +225,26 @@ class catcher():
          for item in line.split(' '):
             eval("self.D_"+type+"[-1].append(item)")
       return (eval("self.D_"+type))
-
+   def get_mem_percentage_cmd(self,cmd):
+      re=self.get('PRM')
+      rsize=0
+      for item in re:
+         cmd_now=item[self.D_offset+1].strip('\')(') 
+         if cmd_now == cmd:
+            print(cmd_now,cmd)
+            print(item[self.D_offset+5])
+            rsize=rsize+int(item[self.D_offset+5])
+      re=self.get('MEM')      
+      total=int(re[0][self.D_offset+0])*int(re[0][self.D_offset+1])/1024 # in Kbytes
+      print(rsize)
+      print(total)
+      percent=rsize/total
+      return percent
 if __name__ == "__main__":
    ca=catcher()
    if len(sys.argv) > 1:
-      re=ca.get(sys.argv[1])
+      #re=ca.get(sys.argv[1])
+      print(ca.get_mem_percentage_cmd(sys.argv[1]))
    else:
       print("./catcher.py  CPU | cpu |CPL | MEM | SWP |PAG |LVM |MDD |DSK |NET |PRG |  PRC |PRM |PRD |PRN ")  
-   for item in re:
-      print(item) 
+   
