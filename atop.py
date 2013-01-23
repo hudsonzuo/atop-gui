@@ -23,10 +23,11 @@ def main():
 
 	for m in pm.modules_:
 		instance = pm.modules_.get(m)
-		w.addTab(m, instance)
+		print instance
+		w.addPage(instance, m)
 	
 	w.showMaximized()
-	
+
 	sys.exit(app.exec_())
 	
 if __name__ == "__main__":

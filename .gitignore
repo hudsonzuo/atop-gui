@@ -22,3 +22,5 @@ components/curveanalyzer/test/test
 # Directories
 .ropeproject
 components/curveanalyzer/.ropeproject
+
+Makefile

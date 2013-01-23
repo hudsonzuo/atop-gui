@@ -3,6 +3,10 @@
 
 #include <QtGui/QWidget>
 
+QT_BEGIN_NAMESPACE
+class QPaintEvent;
+QT_END_NAMESPACE
+
 class CurvePlotter;
 class CurveLegend;
 
@@ -14,8 +18,9 @@ public:
 	void updateData(const QString &data);
 
 protected:
-	void resizeEvent(QResizeEvent *e);
-	
+	void resizeEvent(QResizeEvent *event);
+	void paintEvent(QPaintEvent *event); 
+		
 private:
 	CurvePlotter *curvePlotter_;
 	CurveLegend  *curveLegend_;

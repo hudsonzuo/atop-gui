@@ -1,5 +1,7 @@
 #include "curveanalyzer.h"
 #include <QtGui/QResizeEvent>
+#include <QtGui/QPaintEvent>
+#include <QtGui/QPainter>
 #include "curveplotter.h"
 #include "curvelegend.h"
 
@@ -17,34 +19,23 @@ CurveAnalyzer::CurveAnalyzer(QWidget *parent)
 	curvePlotter_->move(2, 2);
 
 	setMinimumSize(640, 400);
-	QPalette palette(this->palette());
-	palette.setColor(QPalette::Window, Qt::black);
-	setPalette(palette);
 }
 
-void CurveAnalyzer::updateData(const QString &data)
+void CurveAnalyzer::updateData(const QString &)
 {
 	
 }
 
-void CurveAnalyzer::resizeEvent(QResizeEvent *e)
+void CurveAnalyzer::resizeEvent(QResizeEvent *event)
 {
-	QSize size = e->size();
+	QSize size = event->size();
 	curvePlotter_->resize(size - QSize(150, 0));
 	curveLegend_->move(size.width()-150, 0);
 	curveLegend_->resize(150, size.height());
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+void CurveAnalyzer::paintEvent(QPaintEvent *)
+{
+	QPainter painter(this);
+	painter.fillRect(this->r1ect(), Qt::black);
+}
