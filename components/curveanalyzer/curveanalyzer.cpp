@@ -37,5 +37,5 @@ void CurveAnalyzer::resizeEvent(QResizeEvent *event)
 void CurveAnalyzer::paintEvent(QPaintEvent *)
 {
 	QPainter painter(this);
-	painter.fillRect(this->r1ect(), Qt::black);
+	painter.fillRect(this->rect(), Qt::black);
 }
