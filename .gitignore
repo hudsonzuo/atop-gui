@@ -2,7 +2,8 @@
 *.o
 *.pyc
 sip*.*
-
+*.exp
+*.sbf
 # Libraries
 *.lib
 *.a
