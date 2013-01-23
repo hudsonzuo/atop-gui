@@ -1,3 +1,0 @@
-target = CurveAnalyzer
-sources = sipCurveAnalyzercmodule.cpp sipCurveAnalyzerCurveAnalyzer.cpp
-headers = sipAPICurveAnalyzer.h
