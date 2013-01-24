@@ -2,8 +2,11 @@
 #-*- encoding:utf-8 -*-
 from subprocess import getstatusoutput
 import sys
-class catcher():
+from cmd import *
+class catcher(Cmd):
    def __init__(self):
+      Cmd.__init__(self)
+      prompt='atop > '
       self.D_CPU=[]
          # 0total number of clock-ticks per second for this machine
          # 1number of processors
@@ -215,6 +218,7 @@ class catcher():
        #time (time of this interval in format HH:MM:SS)
        #interval (number of seconds elapsed for this interval).
    def get(self,type):
+      exec('del self.D_'+type+'[:]')
       got=getstatusoutput('atop 1 1 -P'+type)
       if got[0] != 0:
          return None
@@ -228,23 +232,28 @@ class catcher():
    def get_mem_percentage_cmd(self,cmd):
       re=self.get('PRM')
       rsize=0
+      tgid=-1
       for item in re:
          cmd_now=item[self.D_offset+1].strip('\')(') 
-         if cmd_now == cmd:
-            print(cmd_now,cmd)
-            print(item[self.D_offset+5])
+         tgid_this=item[self.D_offset+15]
+         if cmd_now == cmd and tgid_this != tgid:
+            #print(cmd_now,cmd)
+            #print(item[self.D_offset+5])
             rsize=rsize+int(item[self.D_offset+5])
+         tgid=tgid_this   
       re=self.get('MEM')      
       total=int(re[0][self.D_offset+0])*int(re[0][self.D_offset+1])/1024 # in Kbytes
-      print(rsize)
-      print(total)
+      #print(rsize)
+      #print(total)
       percent=rsize/total
       return percent
+   def do_get(self,type):
+      print(self.get(type))
+   def do_get_mem_percentage_cmd(self,cmd):
+      print(self.get_mem_percentage_cmd(cmd))
+   def do_EOF(self,line):
+      "QUIT"
+      return True
 if __name__ == "__main__":
-   ca=catcher()
-   if len(sys.argv) > 1:
-      #re=ca.get(sys.argv[1])
-      print(ca.get_mem_percentage_cmd(sys.argv[1]))
-   else:
-      print("./catcher.py  CPU | cpu |CPL | MEM | SWP |PAG |LVM |MDD |DSK |NET |PRG |  PRC |PRM |PRD |PRN ")  
+    catcher().cmdloop("atop data catcher")
    
