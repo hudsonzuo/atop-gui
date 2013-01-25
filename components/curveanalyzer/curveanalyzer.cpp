@@ -2,6 +2,7 @@
 #include <QtGui/QResizeEvent>
 #include <QtGui/QPaintEvent>
 #include <QtGui/QPainter>
+#include <QtCore/QMap>
 #include "curveplotter.h"
 #include "curvelegend.h"
 
@@ -21,9 +22,15 @@ CurveAnalyzer::CurveAnalyzer(QWidget *parent)
 	setMinimumSize(640, 400);
 }
 
-void CurveAnalyzer::updateData(const QString &)
+void CurveAnalyzer::updateData(QByteArray data)
 {
-	
+	bool ok;
+	QVariantMap result = parser_.parse(&data, &ok).toMap();
+	if (!ok) return;
+	QMap<QString, QVariant>::const_iterator i = result.constBegin();
+	while (i != result.constEnd()) {
+		
+	}
 }
 
 void CurveAnalyzer::resizeEvent(QResizeEvent *event)
@@ -39,3 +46,8 @@ void CurveAnalyzer::paintEvent(QPaintEvent *)
 	QPainter painter(this);
 	painter.fillRect(this->rect(), Qt::black);
 }
+
+
+
+
+
