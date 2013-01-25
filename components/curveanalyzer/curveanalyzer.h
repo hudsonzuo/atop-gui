@@ -2,6 +2,8 @@
 #define _CURVEANALYZER_H_
 
 #include <QtGui/QWidget>
+#include <QtCore/QByteArray>
+#include <qjson/parser.h>
 
 QT_BEGIN_NAMESPACE
 class QPaintEvent;
@@ -15,7 +17,7 @@ class CurveAnalyzer : public QWidget
 public:
 	static bool registerToSystem(QString version);
     CurveAnalyzer(QWidget *parent = 0);
-	void updateData(const QString &data);
+	void updateData(QByteArray data);
 
 protected:
 	void resizeEvent(QResizeEvent *event);
@@ -24,6 +26,7 @@ protected:
 private:
 	CurvePlotter *curvePlotter_;
 	CurveLegend  *curveLegend_;
+	QJson::Parser parser_;
 	
 private:
 	CurveAnalyzer(const CurveAnalyzer &);
