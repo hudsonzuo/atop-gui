@@ -5,19 +5,26 @@
 #include <QtCore/QVector>
 
 class QPaintEvent;
+class QResizeEvent;
+class QScrollArea;
+class QVBoxLayout;
+class LegendItem;
 
 class CurveLegend : public QWidget
 {
 public:
     CurveLegend(QWidget *parent = 0);
-	void addItem(const QString &name);
+	QColor addItem(const QString &name);
 
 protected:
-	void paintEvent(QPaintEvent *e);
+	void resizeEvent(QResizeEvent *e);
 
 private:
-	QVector<QString> itemVector_;
 	QStringList colors_;
+	QList<LegendItem *> legendItemList_;
+	QScrollArea *scrollArea_;
+	QWidget *container_;
+	QVBoxLayout *layout_;
 	
 private:
 	CurveLegend(const CurveLegend &);

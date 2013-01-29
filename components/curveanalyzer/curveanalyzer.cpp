@@ -24,13 +24,17 @@ CurveAnalyzer::CurveAnalyzer(QWidget *parent)
 
 void CurveAnalyzer::updateData(QByteArray data)
 {
+	qDebug("1");
 	bool ok;
-	QVariantMap result = parser_.parse(&data, &ok).toMap();
+	QVariantMap result = parser_.parse(data, &ok).toMap();
+	qDebug("2");
 	if (!ok) return;
 	QMap<QString, QVariant>::const_iterator i = result.constBegin();
 	while (i != result.constEnd()) {
-		
+		curveLegend_->addItem(i.key());
+		++i;
 	}
+	qDebug("3");
 }
 
 void CurveAnalyzer::resizeEvent(QResizeEvent *event)

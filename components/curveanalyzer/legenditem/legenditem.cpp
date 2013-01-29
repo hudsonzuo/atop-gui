@@ -3,8 +3,8 @@
 #include <QtGui/QResizeEvent>
 #include "colorblock.h"
 
-LegendItem::LegendItem(const QColor &color,
-					   const QString &label,
+LegendItem::LegendItem(const QString &label,
+					   const QColor &color,
 					   QWidget *parent)
 	: QWidget(parent)
 {
