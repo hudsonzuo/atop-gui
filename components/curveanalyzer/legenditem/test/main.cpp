@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-	LegendItem li(Qt::red, "Chromium");
+	LegendItem li("Chromium", Qt::red);
 	li.resize(200, 50);
 	li.show();
 	

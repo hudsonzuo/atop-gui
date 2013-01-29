@@ -9,8 +9,9 @@ int main(int argc, char *argv[])
 	MainWindow w;
 
 	CurveAnalyzer *ca = new CurveAnalyzer();
+	ca->updateData(QByteArray("{\"Chromium\": 4, \"firefox\": 6}"));
+		
 	w.addPage(ca, "CurveAnalyzer");
-	
 	w.show();
 
 	return app.exec();

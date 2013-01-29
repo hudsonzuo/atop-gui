@@ -1,6 +1,10 @@
 #include "curvelegend.h"
 #include <QtGui/QPainter>
 #include <QtGui/QColor>
+#include <QtGui/QScrollArea>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QVBoxLayout>
+#include "legenditem.h"
 
 CurveLegend::CurveLegend(QWidget *parent)
     : QWidget(parent)
@@ -10,22 +14,30 @@ CurveLegend::CurveLegend(QWidget *parent)
 	setPalette(palette);
 	colors_ = QColor::colorNames();
 	colors_.removeOne("black");
+	layout_ = new QVBoxLayout();
+	container_ = new QWidget();
+	container_->setLayout(layout_);
+	scrollArea_ = new QScrollArea(this);
+	scrollArea_->move(5, 13);
+	scrollArea_->setWidget(container_);
+	scrollArea_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	scrollArea_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
-void CurveLegend::paintEvent(QPaintEvent *)
+QColor CurveLegend::addItem(const QString &name)
 {
-	QPainter painter(this);
-
-	painter.setPen(QColor(255, 255, 255, 125));
-	painter.drawRect(this->rect().adjusted(4, 12, -2, -28));
+	QColor color = colors_.at(legendItemList_.size());
+	LegendItem *li = new LegendItem(name, color);
+	layout_->addWidget(li);
+	legendItemList_.append(li);
+	container_->resize(500, legendItemList_.size() * 35);
+	return color;
 }
 
-void CurveLegend::addItem(const QString &name)
+void CurveLegend::resizeEvent(QResizeEvent *e)
 {
-	itemVector_.append(name);
+	scrollArea_->resize(e->size() - QSize(7, 40));
 }
-
-
 
 
 

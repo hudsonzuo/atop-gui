@@ -10,7 +10,7 @@ class ColorBlock;
 class LegendItem : public QWidget
 {
 public:
-    LegendItem(const QColor &color, const QString &label, QWidget *parent = 0);
+    LegendItem(const QString &label, const QColor &color, QWidget *parent = 0);
 
 protected:
 	void resizeEvent(QResizeEvent *event);
