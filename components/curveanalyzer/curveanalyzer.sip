@@ -9,12 +9,13 @@ class CurveAnalyzer : public QWidget
 %TypeHeaderCode
 #include "curveanalyzer.h"
 #include "curveplotter.h"
+#include "curvelegend.h"
 %End
 
 public:
 	static bool registerToSystem(QString version);
 	CurveAnalyzer(QWidget *parent = 0);
-	void updateData(const QString &data);
+	void updateData(QByteArray data);
 
 protected:
 	void resizeEvent(QResizeEvent *event);
