@@ -15,7 +15,7 @@ class CurveAnalyzer : public QWidget
 public:
 	static bool registerToSystem(QString version);
 	CurveAnalyzer(QWidget *parent = 0);
-	void updateData(QByteArray data);
+	void updateData(const QMap<QString, int> &data);
 
 protected:
 	void resizeEvent(QResizeEvent *event);
