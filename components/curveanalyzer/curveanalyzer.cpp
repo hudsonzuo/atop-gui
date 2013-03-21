@@ -3,6 +3,7 @@
 #include <QtGui/QPaintEvent>
 #include <QtGui/QPainter>
 #include <QtCore/QMap>
+#include <QtCore/QDebug>
 #include "curveplotter.h"
 #include "curvelegend.h"
 
@@ -22,19 +23,13 @@ CurveAnalyzer::CurveAnalyzer(QWidget *parent)
 	setMinimumSize(640, 400);
 }
 
-void CurveAnalyzer::updateData(QByteArray data)
+void CurveAnalyzer::updateData(const QMap<QString, int> &data)
 {
-	qDebug("1");
-	bool ok;
-	QVariantMap result;// = parser_.parse(data, &ok).toMap();
-	qDebug("2");
-	if (!ok) return;
-	QMap<QString, QVariant>::const_iterator i = result.constBegin();
-	while (i != result.constEnd()) {
+	QMap<QString, int>::const_iterator i = data.constBegin();
+	while (i != data.constEnd()) {
 		curveLegend_->addItem(i.key());
 		++i;
 	}
-	qDebug("3");
 }
 
 void CurveAnalyzer::resizeEvent(QResizeEvent *event)

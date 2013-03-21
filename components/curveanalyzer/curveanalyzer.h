@@ -3,7 +3,7 @@
 
 #include <QtGui/QWidget>
 #include <QtCore/QByteArray>
-//#include <qjson/parser.h>
+#include <QtCore/QMap>
 
 QT_BEGIN_NAMESPACE
 class QPaintEvent;
@@ -17,7 +17,7 @@ class CurveAnalyzer : public QWidget
 public:
 	static bool registerToSystem(QString version);
     CurveAnalyzer(QWidget *parent = 0);
-	void updateData(QByteArray data);
+	void updateData(const QMap<QString, int> &data);
 
 protected:
 	void resizeEvent(QResizeEvent *event);
@@ -26,7 +26,6 @@ protected:
 private:
 	CurvePlotter *curvePlotter_;
 	CurveLegend  *curveLegend_;
-	//	QJson::Parser parser_;
 	
 private:
 	CurveAnalyzer(const CurveAnalyzer &);

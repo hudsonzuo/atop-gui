@@ -19,7 +19,7 @@ sip*.*
 *.exe
 *.out
 *.app
-components/curveanalyzer/test/test
+test
 
 # Directories
 .ropeproject
