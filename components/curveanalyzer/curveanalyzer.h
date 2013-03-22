@@ -3,7 +3,7 @@
 
 #include <QtGui/QWidget>
 #include <QtCore/QByteArray>
-#include <QtCore/QMap>
+#include <map>
 
 QT_BEGIN_NAMESPACE
 class QPaintEvent;
@@ -17,8 +17,7 @@ class CurveAnalyzer : public QWidget
 public:
 	static bool registerToSystem(QString version);
     CurveAnalyzer(QWidget *parent = 0);
-	void updateData(const QMap<QString, int> &data);
-
+	void updateData(const std::map<QString, int> &data);
 protected:
 	void resizeEvent(QResizeEvent *event);
 	void paintEvent(QPaintEvent *event); 

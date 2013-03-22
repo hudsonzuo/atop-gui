@@ -8,13 +8,13 @@ int main(int argc, char *argv[])
 
 	MainWindow w;
 
-	QMap<QString, int> data;
+    std::map<QString, int> data;
 	data["Chromium"] = 4;
 	data["Firefox"] = 6;
-	
+
 	CurveAnalyzer *ca = new CurveAnalyzer();
 	ca->updateData(data);
-		
+
 	w.addPage(ca, "CurveAnalyzer");
 	w.resize(800, 600);
 	w.show();

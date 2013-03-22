@@ -1,7 +1,12 @@
-%Module CurveAnalyzer
+// Define the SIP wrapper to the CurveAnalyzer library
+%Module(name=CurveAnalyzer)
 
 %Import QtGui/QtGuimod.sip
 %Import QtCore/QtCoremod.sip
+
+%include <std_map.i>
+
+%template(map_string_int) QMap<string, int>;
 
 class CurveAnalyzer : public QWidget
 {
