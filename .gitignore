@@ -1,6 +1,9 @@
 # Object files
 *.o
 *.pyc
+sip*.*
+*.exp
+*.sbf
 
 # Libraries
 *.lib
@@ -16,3 +19,10 @@
 *.exe
 *.out
 *.app
+test
+
+# Directories
+.ropeproject
+components/curveanalyzer/.ropeproject
+
+Makefile

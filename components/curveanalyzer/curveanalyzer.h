@@ -2,14 +2,30 @@
 #define _CURVEANALYZER_H_
 
 #include <QtGui/QWidget>
+#include <QtCore/QByteArray>
+#include <map>
+
+QT_BEGIN_NAMESPACE
+class QPaintEvent;
+QT_END_NAMESPACE
+
+class CurvePlotter;
+class CurveLegend;
 
 class CurveAnalyzer : public QWidget
 {
 public:
 	static bool registerToSystem(QString version);
     CurveAnalyzer(QWidget *parent = 0);
-	void updateData(const QString &data);
-
+	void updateData(const std::map<QString, int> &data);
+protected:
+	void resizeEvent(QResizeEvent *event);
+	void paintEvent(QPaintEvent *event); 
+		
+private:
+	CurvePlotter *curvePlotter_;
+	CurveLegend  *curveLegend_;
+	
 private:
 	CurveAnalyzer(const CurveAnalyzer &);
 	CurveAnalyzer &operator=(const CurveAnalyzer &);
