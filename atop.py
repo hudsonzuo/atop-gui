@@ -5,30 +5,29 @@ import sys
 from PyQt4 import QtGui, QtCore
 
 sys.path.append("core")
+sys.path.append("mainwindow")
 import plugin_manager
-
-class MainWindow(QtGui.QWidget):
-    """
-    """
-	
-    def __init__(self):
-        """
-        """
-        super(MainWindow, self).__init__()
-
+import mainwindow
 
 def main():
 	"""
 	"""
 	app = QtGui.QApplication(sys.argv)
 
-	w = MainWindow()
+	w = mainwindow.MainWindow()
 	
 	pm = plugin_manager.PluginManager()
-	pm.loadFromXML('config.xml')
+	#	pm.loadFromXML('config.xml')
+	pm.loadAll("components/curveanalyzer")
+	print pm.modules()
 
-	w.show()
+	for m in pm.modules_:
+		instance = pm.modules_.get(m)
+		print instance
+		w.addPage(instance, m)
 	
+	w.showMaximized()
+
 	sys.exit(app.exec_())
 	
 if __name__ == "__main__":

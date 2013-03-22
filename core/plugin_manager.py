@@ -26,6 +26,7 @@ class PluginManager(object):
 		try:
 			module = imp.load_dynamic(key, filename)
 			qtclass = getattr(module, key)
+
 			# 调用模块的注册函数，如果成功则将模块添加到模块列表中
 			# 如果存在两个同名的模块，会出现问题
 			if qtclass.registerToSystem(PluginManager.version_):
@@ -60,15 +61,15 @@ class PluginManager(object):
         - `self`:
         - `path`:
         """
-		if not os.path.isdir(dir):
-			return
-		
+
 		files_list = os.listdir(dir)
-		for file in files_list:
+		for line in files_list:
 			file_path = os.path.join(dir, line)
 			if os.path.isdir(file_path):
 				continue
-			self.load(file, file_path)
+			file_info = os.path.splitext(os.path.basename(file_path))
+			if file_path.endswith(".so"):
+				self.load(file_info[0], file_path)
         
 	def unload(self, key):
 		"""
